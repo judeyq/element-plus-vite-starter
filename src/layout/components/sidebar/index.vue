@@ -1,38 +1,32 @@
-<script lang="ts" setup>
-  import SidebarMenu from '@/layout/components/sidebar/SidebarMenu.vue'
-
-  const logoHeight = 44
-</script>
-
 <template>
-  <!-- v-if="$store.getters.sidebarOpened" -->
-  <div class="">
-    <div class="logo-container">
-      <h1 class="logo-title">
-        vue3-admin
-      </h1>
-    </div>
-    <el-scrollbar>
-      <SidebarMenu />
-    </el-scrollbar>
+  <div class="sidebar-container">
+    <SidebarLogo v-if="systemStore.settings.layout == LayoutEnum.LEFT"></SidebarLogo>
+    <SidebarMenu></SidebarMenu>
   </div>
 </template>
 
-<style lang="scss" scoped>
-  .logo-container {
-    height: v-bind(logoHeight) + 'px';
-    /* padding: 10px 0 22px 0; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+<script setup lang="ts">
+import {useSystemStore} from "@/store/modules/system";
+import {LayoutEnum} from "@/enums/LayoutEnum";
+// 数据
+const systemStore = useSystemStore();
+// 方法
 
-    .logo-title {
-      margin-left: 10px;
-      /* color: #fff; */
-      font-weight: 600;
-      line-height: 50px;
-      font-size: 16px;
-      white-space: nowrap;
-    }
-  }
+// 生命周期
+</script>
+
+<style scoped lang="scss">
+/* 样式 */
+.sidebar-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  background-color: #07365f;
+}
+
+.el-menu {
+  width: 100%;
+  border: 0 !important;
+  background-color: #225375;
+}
 </style>

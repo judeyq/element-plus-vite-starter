@@ -1,44 +1,32 @@
-import { defineStore } from 'pinia'
-import { login } from '@/api/user/user.ts'
-import md5 from 'md5'
+import {RouteRecordRaw} from "vue-router";
+import {StoreTypeEnum} from "@/store/type";
+import {constantRoutes} from "@/router/core/ConstantRoutes";
 
-export const useUserStore = defineStore('user', {
-    state: () => ({
-        token: '',
-        userInfo: {},
-    }),
-    getters: {
-        getToken: (state) => state.token,
-        getUserInfo: (state) => state.userInfo,
-    },
-    actions: {
-        setToken(token: string) {
-            this.token = token
-            localStorage.setItem('token', token)
-        },
-        setUserInfo(userInfo: any) {
-            this.userInfo = userInfo
-        },
-        login(userInfo: any) {
-            const { username, password } = userInfo
-            return new Promise((resolve, reject) => {
-                login({
-                    username,
-                    password: md5(password)
-                }).then((data: any) => {
-                    this.setToken(data.token)
-                    resolve()
-                }).catch(err => {
-                    reject(err)
-                })
-            })
+
+export const useUserStore = defineStore(StoreTypeEnum.USER, {
+    state: (): {
+        userInfo: any,
+        authInfo: any,
+        routes: RouteRecordRaw[]
+        role: any,
+        permission: any,
+    } => {
+        return {
+            // 用户信息
+            userInfo: {},
+            // 认证信息
+            authInfo: {},
+            // 菜单信息
+            routes: constantRoutes,
+            // 角色信息
+            role: [],
+            // 权限信息
+            permission: [],
         }
     },
-    // 进行持久化存储
     persist: {
-        // 本地存储的名称
-        key: 'user',
-        // 保存的位置
-        storage: window.localStorage, // localStorage
+        paths: ['authInfo'],
     },
+    getters: {},
+    actions: {}
 })
