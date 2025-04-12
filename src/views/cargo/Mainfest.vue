@@ -198,18 +198,12 @@
                 <el-button type="primary" @click="ElMessage('该功能正在开发中。。。')"><el-icon class="el-icon--left"><Download /></el-icon>导出舱单</el-button>
                 <el-button type="primary" @click="ElMessage('该功能正在开发中。。。')">历史舱单</el-button>
             </div>
-
         </div>
         <div class="table">
             <el-table :data="tableData" border stripe empty-text="暂无数据" :scrollbar-always-on="true"
                 :header-row-class-name="'custom-header'" show-overflow-tooltip @row-click="handleClickToDetail">
                 <el-table-column class="table-column" v-for="column in columns" :key="column.prop" :prop="column.prop"
                     :label="column.label" :width="column.width || ''" header-align="center" align="center">
-                    <!-- <template v-if="column.isAction" #default="scope">
-                        <el-button type="primary" @click="handleClickToPosition(scope.row)" link style="color: #409EFF">
-                            船位跟踪
-                        </el-button>
-                    </template> -->
                 </el-table-column>
             </el-table>
             <div class="mt-20px flex items-center justify-center">

@@ -35,7 +35,5 @@
     "vite": "^5.2.0",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^2.0.6"
-  },
-  "author": "翼飞",
-  "license": "MIT"
+  }
 }

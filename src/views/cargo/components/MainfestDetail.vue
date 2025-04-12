@@ -1,5 +1,6 @@
 <script lang="ts" setup>
     import { ref } from 'vue'
+    import LoadMap from '@/views/cargo/components/LoadMap.vue'
 
     const value1 = ref('Option1')
     const value2 = ref(['Option1'])
@@ -167,10 +168,16 @@
     onMounted(() => {
         getSaillingDate()
     })
+    const shwLoadMap = ref(true)
+    // 显示积载图
+    const handleClickToLoadMap = () => {
+        shwLoadMap.value = false
+        loadMap.value?.open()
+    }
 </script>
 
 <template>
-    <div>
+    <div v-if="shwLoadMap">
         <h1 class="flex items-center justify-center">舱单明细</h1>
         <div class="flex items-center justify-between my-20px">
             <div>
@@ -192,7 +199,7 @@
                 <el-button class="ml-10px" type="primary">查 询</el-button>
             </div>
             <div>
-                <el-button class="ml-10px" type="primary">积载图</el-button>
+                <el-button class="ml-10px" type="primary" @click="handleClickToLoadMap">积载图</el-button>
                 <el-button type="primary" @click="ElMessage('该功能正在开发中。。。')"><el-icon class="el-icon--left">
                         <Download />
                     </el-icon>导出明细</el-button>
@@ -216,4 +223,5 @@
             </div>
         </div>
     </div>
+    <LoadMap v-else ref="loadMapRef" />
 </template>

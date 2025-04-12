@@ -1,8 +1,8 @@
 <script lang="ts" setup>
     import { ref, reactive, onMounted } from 'vue'
-    import { statusColorMap } from '@/typings/sailling.ts'
+    import { statusColorMap, ReceiveColumnsTypes } from '@/typings/sailling.ts'
 
-    const ReveiveColumns = ref([
+    const ReveiveColumns = ref<ReceiveColumnsTypes>([
         {
             prop: 'index',
             label: '序号',
@@ -198,7 +198,7 @@
                 </div>
                 <div class="table">
                     <el-table :data="tableData" border stripe empty-text="暂无数据" :scrollbar-always-on="true"
-                        :header-row-class-name="'custom-header'" show-overflow-tooltip @row-click="handleClickToDetail">
+                        :header-row-class-name="'custom-header'" show-overflow-tooltip>
                         <el-table-column class="table-column" v-for="column in SendColumns" :key="column.prop"
                             :prop="column.prop" :label="column.label" :width="column.width || ''" header-align="center"
                             align="center">
@@ -234,7 +234,7 @@
                 </div>
                 <div class="table">
                     <el-table :data="tableData" border stripe empty-text="暂无数据" :scrollbar-always-on="true"
-                        :header-row-class-name="'custom-header'" show-overflow-tooltip @row-click="handleClickToDetail">
+                        :header-row-class-name="'custom-header'" show-overflow-tooltip>
                         <el-table-column class="table-column" v-for="column in ReveiveColumns" :key="column.prop"
                             :prop="column.prop" :label="column.label" :width="column.width || ''" header-align="center"
                             align="center">

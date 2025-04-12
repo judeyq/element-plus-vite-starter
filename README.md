@@ -1,3 +1,4 @@
+## 代码目前保存在github仓库名 element-plus-vite-starter
 ## git 提交规范
 1. **主分支（Master/Main）**：
     - **名称**：通常被称为`master`或`main`分支。
